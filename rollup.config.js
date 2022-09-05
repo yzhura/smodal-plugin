@@ -7,7 +7,7 @@ export default {
     output: [
       {
         file: `dist/${pkg.main}`,
-        format: 'cjs',
+        format: 'es',
         exports: 'named',
         sourcemap: true,
         strict: false
