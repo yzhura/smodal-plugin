@@ -9,8 +9,9 @@ class SModals {
         this.selector = selector
         this.options = options
         if (this.options?.onlyOpenButton) {
-            const openModalBtns = document.querySelectorAll(selector)
-            console.log('openModalBtns: ', openModalBtns)
+            // TODO: add just btn option
+            // const openModalBtns = document.querySelectorAll(selector)
+            // console.log('openModalBtns: ', openModalBtns)
             return
         }
         this.initRenderListeners()
@@ -20,7 +21,6 @@ class SModals {
         const cards = document.querySelectorAll(this.selector)
         cards.forEach((card) => {
             const openBtn = card.querySelector('.open-modal-btn')
-            console.log('openBtn: ', openBtn)
             openBtn
                 ? openBtn.addEventListener('click', () =>
                       this.renderModal(card as HTMLElement)
