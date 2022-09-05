@@ -68,5 +68,5 @@ var SModals = /** @class */ (function () {
     return SModals;
 }());
 
-export { SModals };
+// export { SModals };
 //# sourceMappingURL=index.js.map
