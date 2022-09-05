@@ -1,7 +1,7 @@
 import './style/index.scss'
 import { TModalOptions } from './model/modal'
 
-class SModals {
+export class SModals {
     selector: string
     options?: TModalOptions
 

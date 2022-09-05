@@ -15,6 +15,6 @@ export default {
     ],
     plugins: [
       sass({ insert: true }),
-      typescript()
+      typescript(),
     ],
 }
