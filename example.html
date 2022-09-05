@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Example</title>
+    <script src="./dist/index.js" defer></script>
+    <style>
+        .cards-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .cards-list .some-card {
+            width: 30%;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.274);
+            margin: 0 0 15px;
+        }
+        .cards-list img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="cards-list">
+        <div class="some-card" data-modaltitle="Modal header">
+            <div class="img-wrap">
+                <img data-modalimg src="https://avatars.githubusercontent.com/u/32667960?v=4" alt="alt">
+            </div>
+            <p data-modaltext>Hi there! Click on "More details" button to ppen modal</p>
+            <button class="open-modal-btn">More details</button>
+        </div>
+        <div class="some-card">
+            <div class="img-wrap">
+                <img data-modalimg src="https://avatars.githubusercontent.com/u/32667960?v=4" alt="alt">
+            </div>
+            <p data-modaltext>Hi again! Click on anywhere on card to open modal</p>
+        </div>
+        <div class="some-card">
+            <div class="img-wrap">
+                <img data-modalimg src="https://avatars.githubusercontent.com/u/32667960?v=4" alt="alt">
+            </div>
+            <p data-modaltext>Just one more example</p>
+            <p data-modaltext>with some parapraphs</p>
+            <p>This text not included :)</p>
+        </div>
+    </div>
+
+</body>
+</html>
