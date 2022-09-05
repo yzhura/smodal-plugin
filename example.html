@@ -5,11 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modal Example</title>
-    <!-- <script src="./dist/index.js" defer></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/smodals@1.0.2/dist/index.js" ></script>
-    <script >
-        new SModals()
-    </script>
     <style>
         .cards-list {
             display: flex;
@@ -52,6 +47,10 @@
             <p>This text not included :)</p>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/smodals@1.0.4/dist/index.js" ></script>
+    <script >
+        const test = new SModals('.some-card');
+        console.log('test: ', test);
+    </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 import './style/index.scss'
 import { TModalOptions } from './model/modal'
 
-export class SModals {
+class SModals {
     selector: string
     options?: TModalOptions
 
@@ -87,3 +87,5 @@ export class SModals {
         document.querySelector('.modal-wrapper')?.remove()
     }
 }
+
+window.SModals = SModals;
