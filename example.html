@@ -27,32 +27,38 @@
 </head>
 <body>
     <div class="cards-list">
-        <div class="some-card" data-modaltitle="Modal header">
+        <div class="some-card" data-modal-title="Modal header">
             <div class="img-wrap">
-                <img data-modalimg src="https://picsum.photos/200" alt="alt">
+                <img data-modal-img src="https://picsum.photos/200" alt="alt">
             </div>
-            <p data-modaltext>Hi there! Click on "More details" button to ppen modal</p>
+            <p data-modal-text>Hi there! Click on "More details" button to ppen modal</p>
             <button class="open-modal-btn">More details</button>
         </div>
         <div class="some-card">
             <div class="img-wrap">
-                <img data-modalimg src="https://picsum.photos/200" alt="alt">
+                <img data-modal-img src="https://picsum.photos/200" alt="alt">
             </div>
-            <p data-modaltext>Hi again! Click on anywhere on card to open modal</p>
+            <p data-modal-text>Hi again! Click on anywhere on card to open modal</p>
         </div>
         <div class="some-card">
             <div class="img-wrap">
-                <img data-modalimg src="https://picsum.photos/200" alt="alt">
+                <img data-modal-img src="https://picsum.photos/200" alt="alt">
             </div>
-            <p data-modaltext>Just one more example</p>
-            <p data-modaltext>with some parapraphs</p>
+            <p data-modal-text>Just one more example</p>
+            <p data-modal-text>with some parapraphs</p>
             <p>This text not included :)</p>
         </div>
     </div>
+    <div data-modal-id="modal-1" class="custom-modal">
+        <div>
+            Modal from HTML
+            <button class="modal-button-close">Close</button>
+        </div>
+    </div>
+    <button data-modal-id="modal-1">Open Modal (hidden HTML with data-atribute)</button>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const test = new SModals('.some-card');
-            console.log('test: ', test);
         })
     </script>
 </body>
