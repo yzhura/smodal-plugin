@@ -17,8 +17,9 @@ var SModals = /** @class */ (function () {
         this.selector = selector;
         this.options = options;
         if ((_a = this.options) === null || _a === void 0 ? void 0 : _a.onlyOpenButton) {
-            var openModalBtns = document.querySelectorAll(selector);
-            console.log('openModalBtns: ', openModalBtns);
+            // TODO: add just btn option
+            // const openModalBtns = document.querySelectorAll(selector)
+            // console.log('openModalBtns: ', openModalBtns)
             return;
         }
         this.initRenderListeners();
@@ -28,7 +29,6 @@ var SModals = /** @class */ (function () {
         var cards = document.querySelectorAll(this.selector);
         cards.forEach(function (card) {
             var openBtn = card.querySelector('.open-modal-btn');
-            console.log('openBtn: ', openBtn);
             openBtn
                 ? openBtn.addEventListener('click', function () {
                     return _this.renderModal(card);
@@ -53,7 +53,8 @@ var SModals = /** @class */ (function () {
         var title = contentElement.dataset.modaltitle || ((_a = this.options) === null || _a === void 0 ? void 0 : _a.modalTitle);
         var header = title ? "<h2 class=\"modal-header\">".concat(title, "</h2>") : '';
         var imgContent = Array.from(contentElement.querySelectorAll('[data-modalimg]')).reduce(function (prev, cur) {
-            return (prev += "\n            <div class='img-wrap'>\n                <img src=\"".concat(cur.getAttribute('src'), " alt=\"").concat(cur.getAttribute('alt'), "\">\n            </div>"));
+            console.log(cur.getAttribute('src'));
+            return (prev += "\n            <div class='img-wrap'>\n                <img src=\"".concat(cur.getAttribute('src'), "\" alt=\"").concat(cur.getAttribute('alt'), "\">\n            </div>"));
         }, "");
         var textContent = Array.from(contentElement.querySelectorAll('[data-modaltext]')).reduce(function (prev, cur) {
             return (prev += "<p>".concat(cur.textContent, "</p>"));

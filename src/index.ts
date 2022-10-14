@@ -50,9 +50,10 @@ class SModals {
         const imgContent = Array.from(
             contentElement.querySelectorAll('[data-modalimg]')
         ).reduce((prev, cur) => {
+            console.log(cur.getAttribute('src'));
             return (prev += `
             <div class='img-wrap'>
-                <img src="${cur.getAttribute('src')} alt="${cur.getAttribute(
+                <img src="${cur.getAttribute('src')}" alt="${cur.getAttribute(
                 'alt'
             )}">
             </div>`)
