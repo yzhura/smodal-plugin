@@ -4,7 +4,7 @@
   "description": "Simple modals",
   "main": "index.js",
   "scripts": {
-    "test": "",
+    "test": "echo \"No test specified\"",
     "build": "rollup -c",
     "start": "rollup -c -w"
   },
