@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"No test specified\"",
     "build": "rollup -c",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "publish": "npm publish --access public"
   },
   "author": "yzhura",
   "bugs": {
