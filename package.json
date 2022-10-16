@@ -1,5 +1,5 @@
 {
-  "name": "smodals",
+  "name": "@yzhura/smodals",
   "version": "1.0.8",
   "description": "Simple modals",
   "main": "index.js",
