@@ -2,20 +2,27 @@ import './style/index.scss'
 import { TModalOptions } from './model/modal'
 
 class SModals {
-    selector: string
+    selector: string | undefined
     options?: TModalOptions
-    private modalWrapperClass: string = "modal-wrapper";
-    private renderTimeoutSpeed: number = 200;
+    private modalWrapperClass: string = 'modal-wrapper'
+    private renderTimeoutSpeed: number = 200
 
-    constructor(selector: string, options?: TModalOptions) {
-        this.selector = selector;
-        this.options = options;
-        this.renderTimeoutSpeed = options?.renderTimeoutSpeed || this.renderTimeoutSpeed;
+    constructor(selector?: string, options?: TModalOptions) {
+        this.selector = selector
+        this.options = options
+        this.renderTimeoutSpeed =
+            options?.renderTimeoutSpeed || this.renderTimeoutSpeed
         this.bindHtmlModals()
-        this.initRenderListeners()
+        if(this.selector) {
+            this.initCardOpenersListeners()
+        }
+        this.initCloseEventListeners();
     }
 
-    private initRenderListeners() {
+    private initCardOpenersListeners() {
+        if(!this.selector) {
+            throw new Error('Provide class name into constructor. Example: new SModals(".card")')
+        }
         const actionItems = document.querySelectorAll(this.selector)
         actionItems.forEach((actionElement) => {
             const openBtn = actionElement.querySelector('.open-modal-btn')
@@ -27,6 +34,9 @@ class SModals {
                       this.renderModal(actionElement as HTMLElement)
                   )
         })
+    }
+
+    private initCloseEventListeners() {
         document.addEventListener('click', (event) => {
             if (event.target instanceof Element) {
                 const { target } = event
@@ -43,7 +53,7 @@ class SModals {
 
     private renderModal(contentElement: HTMLElement) {
         const title =
-            contentElement.dataset.modalTitle || this.options?.modalTitle;
+            contentElement.dataset.modalTitle || this.options?.modalTitle
         const header = title ? `<h2 class="modal-header">${title}</h2>` : ''
         const imgContent = Array.from(
             contentElement.querySelectorAll('[data-modal-img]')
@@ -78,41 +88,51 @@ class SModals {
                 </div>
             </div> 
         `
-        document.body.insertAdjacentHTML('beforeend', template);
+        document.body.insertAdjacentHTML('beforeend', template)
 
-        this.animateModal();
+        this.animateModal()
     }
 
     private unMountModal() {
-        this.unMountAnimate();
+        this.unMountAnimate()
 
         setTimeout(() => {
-            document.querySelector('.modal-wrapper')?.remove();
+            document.querySelector('.modal-wrapper')?.remove()
         }, this.renderTimeoutSpeed)
     }
 
     private unMountAnimate() {
-        const modalWrapper = document.querySelector(`.${this.modalWrapperClass}`);
-        modalWrapper?.classList.remove('active');
+        const modalWrapper = document.querySelector(
+            `.${this.modalWrapperClass}`
+        )
+        modalWrapper?.classList.remove('active')
     }
 
     private animateModal() {
-        const modalWrapper = document.querySelector(`.${this.modalWrapperClass}`);
+        const modalWrapper = document.querySelector(
+            `.${this.modalWrapperClass}`
+        )
         setTimeout(() => {
-            modalWrapper?.classList.add('active');
+            modalWrapper?.classList.add('active')
         })
     }
 
     private bindHtmlModals() {
-        const dataModalsIds = Array.from(document.querySelectorAll('[data-modal-id]'))
-        const htmlModals = dataModalsIds.filter((el) => el.tagName !== 'BUTTON');
+        const dataModalsIds = Array.from(
+            document.querySelectorAll('[data-modal-id]')
+        )
+        const htmlModals = dataModalsIds.filter((el) => el.tagName !== 'BUTTON')
         htmlModals.forEach((el) => el.classList.add('hidden-content'))
 
         document.addEventListener('click', (event) => {
-            const target = event.target;
-            if((target as HTMLButtonElement).tagName === 'BUTTON') {
-                const datasetValue = (target as HTMLButtonElement).dataset.modalId
-                const htmlModal = document.querySelector(`[data-modal-id=${datasetValue}]`) as HTMLElement;
+            const target = event.target
+            if ((target as HTMLButtonElement).tagName === 'BUTTON') {
+                const datasetValue = (target as HTMLButtonElement).dataset
+                    .modalId;
+                if(!datasetValue) return;
+                const htmlModal = document.querySelector(
+                    `[data-modal-id=${datasetValue}]`
+                ) as HTMLElement
                 const template = `
                     <div class="${this.modalWrapperClass}">
                         <div class="modal-backdrop"></div>
@@ -120,12 +140,12 @@ class SModals {
                             ${htmlModal.innerHTML}
                         </div>
                     </div> 
-                `;
-                document.body.insertAdjacentHTML('beforeend', template);
-                this.animateModal();
+                `
+                document.body.insertAdjacentHTML('beforeend', template)
+                this.animateModal()
             }
         })
     }
 }
 
-window.SModals = SModals;
+window.SModals = SModals

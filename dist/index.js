@@ -13,16 +13,23 @@ ___$insertStyle(".modal-backdrop, .modal-wrapper {\n  top: 0;\n  left: 0;\n  bot
 
 var SModals = /** @class */ (function () {
     function SModals(selector, options) {
-        this.modalWrapperClass = "modal-wrapper";
+        this.modalWrapperClass = 'modal-wrapper';
         this.renderTimeoutSpeed = 200;
         this.selector = selector;
         this.options = options;
-        this.renderTimeoutSpeed = (options === null || options === void 0 ? void 0 : options.renderTimeoutSpeed) || this.renderTimeoutSpeed;
+        this.renderTimeoutSpeed =
+            (options === null || options === void 0 ? void 0 : options.renderTimeoutSpeed) || this.renderTimeoutSpeed;
         this.bindHtmlModals();
-        this.initRenderListeners();
+        if (this.selector) {
+            this.initCardOpenersListeners();
+        }
+        this.initCloseEventListeners();
     }
-    SModals.prototype.initRenderListeners = function () {
+    SModals.prototype.initCardOpenersListeners = function () {
         var _this = this;
+        if (!this.selector) {
+            throw new Error('Provide class name into constructor. Example: new SModals(".card")');
+        }
         var actionItems = document.querySelectorAll(this.selector);
         actionItems.forEach(function (actionElement) {
             var openBtn = actionElement.querySelector('.open-modal-btn');
@@ -34,6 +41,9 @@ var SModals = /** @class */ (function () {
                     return _this.renderModal(actionElement);
                 });
         });
+    };
+    SModals.prototype.initCloseEventListeners = function () {
+        var _this = this;
         document.addEventListener('click', function (event) {
             if (event.target instanceof Element) {
                 var target = event.target;
@@ -84,7 +94,10 @@ var SModals = /** @class */ (function () {
         document.addEventListener('click', function (event) {
             var target = event.target;
             if (target.tagName === 'BUTTON') {
-                var datasetValue = target.dataset.modalId;
+                var datasetValue = target.dataset
+                    .modalId;
+                if (!datasetValue)
+                    return;
                 var htmlModal = document.querySelector("[data-modal-id=".concat(datasetValue, "]"));
                 var template = "\n                    <div class=\"".concat(_this.modalWrapperClass, "\">\n                        <div class=\"modal-backdrop\"></div>\n                        <div class=\"modal-container\">\n                            ").concat(htmlModal.innerHTML, "\n                        </div>\n                    </div> \n                ");
                 document.body.insertAdjacentHTML('beforeend', template);
